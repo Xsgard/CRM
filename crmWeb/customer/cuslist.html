@@ -23,7 +23,7 @@
             table.render({
                 elem: '#demo', //绑定表格元素，值是table的id
                 height: 312, //表格的高度
-                url: 'data.json' //数据接口
+                url: 'http://localhost:8080/customer/getCustomers' //数据接口
                     ,
                 page: true //开启分页
                     ,
@@ -31,45 +31,70 @@
                     [ //表头，一个{}对应表格的一列
                         //title对应表格的表头，field 对应json对象数据中的key(键)
                         {
-                            field: 'id',
-                            title: 'ID',
+                            field: 'cusId',
+                            title: '客户编号',
                             width: 80,
                             sort: true,
                             fixed: 'left'
                         }, {
-                            field: 'name',
-                            title: '姓名',
+                            field: 'cusName',
+                            title: '客户名称',
                             width: 80
                         }, {
-                            field: 'sex',
-                            title: '性别',
+                            field: 'cusRegion',
+                            title: '客户地区',
                             width: 80,
                             sort: true
                         }, {
-                            field: 'city',
-                            title: '住址',
+                            field: 'cusIndustry',
+                            title: '客户行业',
                             width: 80
                         }, {
-                            field: 'sign',
-                            title: '签名',
+                            field: 'cusLevel',
+                            title: '客户等级',
                             width: 177
                         }, {
-                            field: 'experience',
-                            title: '积分',
+                            field: 'cusSatisfy',
+                            title: '客户满意度',
                             width: 80,
                             sort: true
                         }, {
-                            field: 'score',
-                            title: '评分',
+                            field: 'cusCredit',
+                            title: '客户信用度',
                             width: 80,
                             sort: true
                         }, {
-                            field: 'classify',
-                            title: '职业',
+                            field: 'cusAddr',
+                            title: '客户地址',
                             width: 80
                         }, {
-                            field: 'words',
-                            title: '字数',
+                            field: 'cusZipcode',
+                            title: '客户邮编',
+                            width: 135,
+                            sort: true
+                        }, {
+                            field: 'cusPhone',
+                            title: '客户电话',
+                            width: 135,
+                            sort: true
+                        }, {
+                            field: 'cusFax',
+                            title: '客户传真',
+                            width: 135,
+                            sort: true
+                        }, {
+                            field: 'cusUrl',
+                            title: '客户网址',
+                            width: 135,
+                            sort: true
+                        }, {
+                            field: 'userId',
+                            title: '客户经理id',
+                            width: 135,
+                            sort: true
+                        }, {
+                            field: 'cusStatus',
+                            title: '客户状态',
                             width: 135,
                             sort: true
                         }
