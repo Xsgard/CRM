@@ -26,13 +26,12 @@
             var table = layui.table; //获取table对象
             //第一个实例
             table.render({
-                elem: '#demo', //绑定表格元素，值是table的id
-                height: 312, //表格的高度
-                url: 'http://localhost:8080/customer/getCustomers' //数据接口
-                    ,
-                page: true //开启分页
-                    ,
-                cols: [
+                elem: '#demo' //绑定表格元素，值是table的id
+                ,height: 312 //表格的高度
+                ,url: 'http://localhost:8080/customer/getCustomers' //数据接口
+                ,page: true //开启分页
+            
+                ,cols: [
                     [ //表头，一个{}对应表格的一列
                         //title对应表格的表头，field 对应json对象数据中的key(键)
                         {
@@ -112,7 +111,7 @@
 
             });
 
-                        //触发单元格工具事件
+            //触发单元格工具事件
             table.on('tool(test)', function(obj){ // 双击 toolDouble
                 var data = obj.data;
                 //console.log(obj)
@@ -124,9 +123,9 @@
                 } else if(obj.event === 'edit'){
                 layer.open({
                     title: '编辑',
-                    type: 1,
+                    type: 2,
                     area: ['80%','80%'],
-                    content: '<div style="padding: 16px;">自定义表单元素</div>'
+                    content: 'cusupdate.html'
                 });
                 }
             });
