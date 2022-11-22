@@ -9,10 +9,16 @@
 
 <body>
 
+    <script type="text/html" id="barDemo">
+        <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+      </script>
+
     <!-- table 表格原始容器，设置一个id用来给js中的table绑定，lay-filter是事件过滤器 -->
     <table id="demo" lay-filter="test"></table>
 
     <script src="../layui/layui.js"></script>
+
     <script>
         // layui.use 方法类似于C语言中的main，方法的入口
         //在use方法的第一个参数中设置要使用的内置模块，比如这里的table
@@ -96,9 +102,33 @@
                             title: '客户状态',
                             width: 135,
                             sort: true
+                        },{
+                            title: '操作',
+                            width: 135,
+                            toolbar:'#barDemo'
                         }
                     ]
                 ]
+
+            });
+
+                        //触发单元格工具事件
+            table.on('tool(test)', function(obj){ // 双击 toolDouble
+                var data = obj.data;
+                //console.log(obj)
+                if(obj.event === 'del'){
+                layer.confirm('真的删除行么', function(index){
+                    obj.del();
+                    layer.close(index);
+                });
+                } else if(obj.event === 'edit'){
+                layer.open({
+                    title: '编辑',
+                    type: 1,
+                    area: ['80%','80%'],
+                    content: '<div style="padding: 16px;">自定义表单元素</div>'
+                });
+                }
             });
 
         });
