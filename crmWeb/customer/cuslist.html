@@ -8,32 +8,37 @@
 </head>
 
 <body>
+
+    <!-- 单元格操作工具栏 -->
     <script type="text/html" id="barDemo">
         <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
         <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
-      </script>
+    </script>
 
     <!-- table 表格原始容器，设置一个id用来给js中的table绑定，lay-filter是事件过滤器 -->
     <table id="demo" lay-filter="test"></table>
 
-    <script src="../layui/layui.js"></script>
 
+    <script src="../layui/layui.js"></script>
     <script>
-        //全局变量 暂存表格数据
-        var dataRow=null;
+        var dataRow = null; //1.定义一个全局变量，用来暂存表格的数据
+
         // layui.use 方法类似于C语言中的main，方法的入口
         //在use方法的第一个参数中设置要使用的内置模块，比如这里的table
         layui.use('table', function() {
             var table = layui.table; //获取table对象
+
             //第一个实例
             table.render({
-                elem: '#demo' //绑定表格元素，值是table的id
-                ,height: 312 //表格的高度
-                ,url: 'http://localhost:8080/customer/getCustomers' //数据接口
-                ,page: true //开启分页
-                ,limit:2
-                ,limits:[1,2,3]
-                ,cols: [
+                elem: '#demo', //绑定表格元素，值是table的id
+                height: 312, //表格的高度
+                url: 'http://localhost:8080/customer/getCustomers' //数据接口, layui的table自动会带上page和limit参数，不需要自己添加
+                    ,
+                page: true //开启分页
+                    ,
+                limit: 2,
+                limits: [1, 2, 6, 8],
+                cols: [
                     [ //表头，一个{}对应表格的一列
                         //title对应表格的表头，field 对应json对象数据中的key(键)
                         {
@@ -95,7 +100,7 @@
                             sort: true
                         }, {
                             field: 'userId',
-                            title: '客户经理id',
+                            title: '客户经理',
                             width: 135,
                             sort: true
                         }, {
@@ -103,37 +108,48 @@
                             title: '客户状态',
                             width: 135,
                             sort: true
-                        },{
+                        }, {
+                            field: 'cusCreatetime',
+                            title: '创建时间',
+                            width: 135,
+                            sort: true
+                        }, {
                             title: '操作',
                             width: 135,
-                            toolbar:'#barDemo'
+                            toolbar: '#barDemo'
                         }
                     ]
                 ]
-
-            });
+            }); //table.render方法结束
 
             //触发单元格工具事件
-            table.on('tool(test)', function(obj){ // 双击 toolDouble
-                var data = obj.data;
-                //console.log(obj)
-                if(obj.event === 'del'){
-                layer.confirm('真的删除行么', function(index){
-                    obj.del();
-                    layer.close(index);
-                });
-                } else if(obj.event === 'edit'){
-                dataRow=data
-                layer.open({
-                    title: '编辑',
-                    type: 2,
-                    area: ['80%','80%'],
-                    content: 'cusupdate.html'
-                });
+            //第一个参数：tool表示对单元格工具栏添加事件，test对应table标签的lay-filter属性值（确定对哪一个表格添加事件）
+            //第二个参数：是一个函数，触发这个单元格事件时，执行的代码就写在这个函数里
+            //obj到底是什么？
+            table.on('tool(test)', function(obj) { // 双击 toolDouble
+                var data = obj.data; //data是触发单元格事件的那一行的数据
+                console.log("下面是cuslist页面的单元格工具事件的obj：")
+                console.log(obj)
+                    //obj.event是指单元格事件，当这个值等于单元格工具按钮的lay-event的属性值的时候，就满足if条件，从而执行if语句里的代码
+                if (obj.event === 'del') { //删除按钮事件
+                    layer.confirm('真的删除行么', function(index) {
+                        obj.del();
+                        layer.close(index);
+                    });
+                } else if (obj.event === 'edit') { //修改按钮事件
+                    dataRow = data; //2.给全局变量赋值
+
+                    //layer.open设置一个弹出框
+                    layer.open({
+                        title: '编辑', //弹出框的标题
+                        type: 2, //弹出框的类型：1 html代码页面  2 iframe
+                        area: ['80%', '80%'],
+                        content: 'cusupdate.html' //修改页面的相对地址
+                    });
                 }
             });
 
-        });
+        }); //layui.use结束符
     </script>
 </body>
 
