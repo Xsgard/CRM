@@ -180,9 +180,12 @@
                     dataType: "json",
                     success: function(res) { //请求成功后的回调函数，res就是后端传回来的数据
                         // console.log(res.msg)
-                        layer.msg(res.msg);
                         //设置父页面刷新, reloadData的第一个参数是要刷新的表格的ID
-                        parent.layui.table.reloadData('demo', {});
+                        layer.msg(res.msg,{icon:1,time:1000},function (){
+                            var index = parent.layer.getFrameIndex(window.name);
+                            parent.layui.table.reloadData('demo', {});
+                            parent.layer.close(index);
+                        })  
                     }
 
                 })
