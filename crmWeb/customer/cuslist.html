@@ -8,7 +8,6 @@
 </head>
 
 <body>
-
     <script type="text/html" id="barDemo">
         <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
         <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
@@ -20,6 +19,8 @@
     <script src="../layui/layui.js"></script>
 
     <script>
+        //全局变量 暂存表格数据
+        var dataRow=null;
         // layui.use 方法类似于C语言中的main，方法的入口
         //在use方法的第一个参数中设置要使用的内置模块，比如这里的table
         layui.use('table', function() {
@@ -30,7 +31,8 @@
                 ,height: 312 //表格的高度
                 ,url: 'http://localhost:8080/customer/getCustomers' //数据接口
                 ,page: true //开启分页
-            
+                ,limit:2
+                ,limits:[1,2,3]
                 ,cols: [
                     [ //表头，一个{}对应表格的一列
                         //title对应表格的表头，field 对应json对象数据中的key(键)
@@ -121,6 +123,7 @@
                     layer.close(index);
                 });
                 } else if(obj.event === 'edit'){
+                dataRow=data
                 layer.open({
                     title: '编辑',
                     type: 2,

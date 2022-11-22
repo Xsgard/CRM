@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>客户信息修改页面</title>
+    <link rel="stylesheet" href="../layui/css/layui.css" media="all">
+
+    <style>
+        form{
+            padding: 20px 30px;
+        }
+    </style>
+    
+</head>
+<body>
+    <script src="../layui/layui.js"></script>
+    <form class="layui-form" action="" lay-filter="formTest">
+        <div class="layui-form-item">
+          <label class="layui-form-label">客户编号</label>
+          <div class="layui-input-block">
+            <input type="text" name="cusId" readonly class="layui-input">
+          </div>
+        </div>
+
+        <div class="layui-form-item">
+          <label class="layui-form-label">客户名称</label>
+          <div class="layui-input-inline">
+            <input type="text" name="cusname" required lay-verify="required" placeholder="请输入名称" class="layui-input">
+          </div>
+        </div>
+
+        <div class="layui-form-item">
+          <label class="layui-form-label">客户地区</label>
+          <div class="layui-input-block">
+            <select name="cusRegion" lay-verify="required">
+              <option value=""></option>
+              <option value="1">东北</option>
+              <option value="2">华北</option>
+              <option value="3">西北</option>
+              <option value="4">华南</option>
+              <option value="5">华南</option>
+              <option value="6">华中</option>
+              <option value="7">华东</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">客户等级</label>
+            <div class="layui-input-block">
+              <select name="cusLevel" lay-verify="required">
+                <option value=""></option>
+                <option value="A">重点客户</option>
+                <option value="B">普通客户</option>
+                <option value="C">非优先客户</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">客户满意度</label>
+            <div class="layui-input-block">
+              <select name="cusSatisfy" lay-verify="required">
+                <option value=""></option>
+                <option value="1">一级</option>
+                <option value="2">二级</option>
+                <option value="3">三级</option>
+                <option value="4">四级</option>
+                <option value="5">五级</option>
+              </select>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">客户地址</label>
+            <div class="layui-input-inline">
+              <input type="text" name="cusAddr" required lay-verify="required" placeholder="请输入地址" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">客户邮编</label>
+            <div class="layui-input-inline">
+              <input type="text" name="cusZipcode" required lay-verify="required" placeholder="请输入邮编" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+          <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+          </div>
+        </div>
+      </form>
+       
+      <script>
+      //Demo
+      layui.use('form', function(){
+        var form = layui.form;
+        //获取dataRow
+        var dataRow = parent.dataRow;
+        
+        form.val("formTest", { //formTest 即 class="layui-form" 所在元素属性 lay-filter="" 对应的值
+                "username": "贤心" // "name": "value"
+                ,"sex": "女"
+                ,"auth": 3
+                ,"check[write]": true
+                ,"open": false
+                ,"desc": "我爱layui"
+        });
+        
+        //提交
+        form.on('submit(formDemo)', function(data){
+          layer.msg(JSON.stringify(data.field));
+          return false;
+        });
+      });
+      </script>
+    
+</body>
+</html>
