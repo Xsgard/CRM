@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>客户信息修改页面</title>
     <link rel="stylesheet" href="../layui/css/layui.css" media="all">
@@ -32,6 +31,22 @@
         </div>
 
         <div class="layui-form-item">
+            <label class="layui-form-label">客户地区</label>
+            <div class="layui-input-block">
+              <select name="cusRegion" lay-verify="required">
+                <option value=""></option>
+                <option value="1">东北</option>
+                <option value="2">华北</option>
+                <option value="3">西北</option>
+                <option value="4">华南</option>
+                <option value="5">华南</option>
+                <option value="6">华中</option>
+                <option value="7">华东</option>
+              </select>
+            </div>
+          </div>
+
+        <div class="layui-form-item">
             <label class="layui-form-label">客户行业</label>
             <div class="layui-input-block">
               <select name="cusIndustry" lay-verify="required">
@@ -48,21 +63,7 @@
             </div>
           </div>
 
-        <div class="layui-form-item">
-          <label class="layui-form-label">客户地区</label>
-          <div class="layui-input-block">
-            <select name="cusRegion" lay-verify="required">
-              <option value=""></option>
-              <option value="1">东北</option>
-              <option value="2">华北</option>
-              <option value="3">西北</option>
-              <option value="4">华南</option>
-              <option value="5">华南</option>
-              <option value="6">华中</option>
-              <option value="7">华东</option>
-            </select>
-          </div>
-        </div>
+        
 
         <div class="layui-form-item">
             <label class="layui-form-label">客户等级</label>
@@ -81,6 +82,20 @@
             <label class="layui-form-label">客户满意度</label>
             <div class="layui-input-block">
               <select name="cusSatisfy" lay-verify="required">
+                <option value=""></option>
+                <option value="1">一级</option>
+                <option value="2">二级</option>
+                <option value="3">三级</option>
+                <option value="4">四级</option>
+                <option value="5">五级</option>
+              </select>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">客户信用度</label>
+            <div class="layui-input-block">
+              <select name="cusCredit" lay-verify="required">
                 <option value=""></option>
                 <option value="1">一级</option>
                 <option value="2">二级</option>
@@ -151,8 +166,9 @@
        
       <script>
       //Demo
-      layui.use('form', function(){
+      layui.use(['form','jquery'], function(){
         var form = layui.form;
+        var $ =layui.jquery;
         //获取dataRow
         var dataRow = parent.dataRow;
 
@@ -160,7 +176,18 @@
         
         //提交
         form.on('submit(formDemo)', function(data){
-          layer.msg(JSON.stringify(data.field));
+        //layer.msg(JSON.stringify(data.field));
+        $.ajax({
+            url:"http://localhost:8080/customer/update",
+            type: "post",
+            data: data.field,
+            dataType: "json",
+            success:function(res) {
+                layer.msg(res.msg);
+                //设置父页面刷新, reloadData的第一个参数是要刷新的表格的ID
+                parent.layui.table.reloadData('demo', {});
+            }
+        })
           return false;
         });
       });
