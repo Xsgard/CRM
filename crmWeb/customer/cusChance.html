@@ -22,7 +22,7 @@
             table.render({
                 elem: '#demo', //绑定表格元素，值是table的id
                 height: 312, //表格的高度
-                url: 'http://localhost:8080/customer/getCustomers' //数据接口
+                url: 'http://localhost:8080/cusChance/getCusChance' //数据接口
                     ,
                 page: true //开启分页
                     ,
@@ -30,70 +30,65 @@
                     [ //表头，一个{}对应表格的一列
                         //title对应表格的表头，field 对应json对象数据中的key(键)
                         {
-                            field: 'cusId',
+                            field: 'scId',
                             title: '客户编号',
                             width: 80,
                             sort: true,
                             fixed: 'left'
                         }, {
-                            field: 'cusName',
+                            field: 'scCusname',
                             title: '客户名称',
                             width: 80
                         }, {
-                            field: 'cusRegion',
-                            title: '客户地区',
+                            field: 'scComming',
+                            title: '机会来源',
                             width: 80,
                             sort: true
                         }, {
-                            field: 'cusIndustry',
-                            title: '客户行业',
+                            field: 'scName',
+                            title: '联系人',
                             width: 80
                         }, {
-                            field: 'cusLevel',
-                            title: '客户等级',
+                            field: 'scPhone',
+                            title: '联系电话',
                             width: 177
                         }, {
-                            field: 'cusSatisfy',
-                            title: '客户满意度',
+                            field: 'scSuccess',
+                            title: '成功几率(%)',
                             width: 80,
                             sort: true
                         }, {
-                            field: 'cusCredit',
-                            title: '客户信用度',
+                            field: 'scMessage',
+                            title: '概要',
                             width: 80,
                             sort: true
                         }, {
-                            field: 'cusAddr',
-                            title: '客户地址',
+                            field: 'scDesc',
+                            title: '机会描述',
                             width: 80
                         }, {
-                            field: 'cusZipcode',
-                            title: '客户邮编',
+                            field: 'scCreateuserid',
+                            title: '创建人',
                             width: 135,
                             sort: true
                         }, {
-                            field: 'cusPhone',
-                            title: '客户电话',
+                            field: 'scCreatetime',
+                            title: '创建时间',
                             width: 135,
                             sort: true
                         }, {
-                            field: 'cusFax',
-                            title: '客户传真',
+                            field: 'scGiveuserid',
+                            title: '指派给谁',
                             width: 135,
                             sort: true
                         }, {
-                            field: 'cusUrl',
-                            title: '客户网址',
+                            field: 'scGivetime',
+                            title: '指派时间',
                             width: 135,
                             sort: true
                         }, {
-                            field: 'userId',
-                            title: '客户经理id',
-                            width: 135,
-                            sort: true
-                        }, {
-                            field: 'cusStatus',
-                            title: '客户状态',
+                            field: 'scStatus',
+                            title: '状态',
                             width: 135,
                             sort: true
                         }
