@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>table 模块快速使用</title>
+    <link rel="stylesheet" href="../layui/css/layui.css" media="all">
+</head>
+
+<body>
+
+    <!-- table 表格原始容器，设置一个id用来给js中的table绑定，lay-filter是事件过滤器 -->
+    <table id="demo" lay-filter="test"></table>
+
+    <script src="../layui/layui.js"></script>
+    <script>
+        // layui.use 方法类似于C语言中的main，方法的入口
+        //在use方法的第一个参数中设置要使用的内置模块，比如这里的table
+        layui.use('table', function() {
+            var table = layui.table; //获取table对象
+            //第一个实例
+            table.render({
+                elem: '#demo', //绑定表格元素，值是table的id
+                height: 312, //表格的高度
+                url: 'http://localhost:8080/customer/getCustomers' //数据接口
+                    ,
+                page: true //开启分页
+                    ,
+                cols: [
+                    [ //表头，一个{}对应表格的一列
+                        //title对应表格的表头，field 对应json对象数据中的key(键)
+                        {
+                            field: 'cusId',
+                            title: '客户编号',
+                            width: 80,
+                            sort: true,
+                            fixed: 'left'
+                        }, {
+                            field: 'cusName',
+                            title: '客户名称',
+                            width: 80
+                        }, {
+                            field: 'cusRegion',
+                            title: '客户地区',
+                            width: 80,
+                            sort: true
+                        }, {
+                            field: 'cusIndustry',
+                            title: '客户行业',
+                            width: 80
+                        }, {
+                            field: 'cusLevel',
+                            title: '客户等级',
+                            width: 177
+                        }, {
+                            field: 'cusSatisfy',
+                            title: '客户满意度',
+                            width: 80,
+                            sort: true
+                        }, {
+                            field: 'cusCredit',
+                            title: '客户信用度',
+                            width: 80,
+                            sort: true
+                        }, {
+                            field: 'cusAddr',
+                            title: '客户地址',
+                            width: 80
+                        }, {
+                            field: 'cusZipcode',
+                            title: '客户邮编',
+                            width: 135,
+                            sort: true
+                        }, {
+                            field: 'cusPhone',
+                            title: '客户电话',
+                            width: 135,
+                            sort: true
+                        }, {
+                            field: 'cusFax',
+                            title: '客户传真',
+                            width: 135,
+                            sort: true
+                        }, {
+                            field: 'cusUrl',
+                            title: '客户网址',
+                            width: 135,
+                            sort: true
+                        }, {
+                            field: 'userId',
+                            title: '客户经理id',
+                            width: 135,
+                            sort: true
+                        }, {
+                            field: 'cusStatus',
+                            title: '客户状态',
+                            width: 135,
+                            sort: true
+                        }
+                    ]
+                ]
+            });
+
+        });
+    </script>
+</body>
+
+</html>
