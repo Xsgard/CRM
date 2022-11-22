@@ -27,9 +27,26 @@
         <div class="layui-form-item">
           <label class="layui-form-label">客户名称</label>
           <div class="layui-input-inline">
-            <input type="text" name="cusname" required lay-verify="required" placeholder="请输入名称" class="layui-input">
+            <input type="text" name="cusName" required lay-verify="required" placeholder="请输入名称" class="layui-input">
           </div>
         </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">客户行业</label>
+            <div class="layui-input-block">
+              <select name="cusIndustry" lay-verify="required">
+                <option value=""></option>
+                <option value="1">金融</option>
+                <option value="2">房地产</option>
+                <option value="3">商业服务</option>
+                <option value="4">运输物流</option>
+                <option value="5">生产</option>
+                <option value="6">政府</option>
+                <option value="7">文化传媒</option>
+                <option value="8">其他</option>
+              </select>
+            </div>
+          </div>
 
         <div class="layui-form-item">
           <label class="layui-form-label">客户地区</label>
@@ -89,6 +106,42 @@
         </div>
 
         <div class="layui-form-item">
+            <label class="layui-form-label">客户电话</label>
+            <div class="layui-input-inline">
+              <input type="text" name="cusPhone" required lay-verify="required" placeholder="请输入地址" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">客户传真</label>
+            <div class="layui-input-inline">
+              <input type="text" name="cusFax" required lay-verify="required" placeholder="请输入邮编" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">客户网址</label>
+            <div class="layui-input-inline">
+              <input type="text" name="cusUrl" required lay-verify="required" placeholder="请输入地址" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">客户经理id</label>
+            <div class="layui-input-inline">
+              <input type="text" name="userId" required lay-verify="required" placeholder="请输入邮编" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">客户状态</label>
+            <div class="layui-input-inline">
+              <input type="text" name="cusStatus" required lay-verify="required" placeholder="请输入邮编" class="layui-input">
+            </div>
+        </div>
+        
+
+        <div class="layui-form-item">
           <div class="layui-input-block">
             <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
             <button type="reset" class="layui-btn layui-btn-primary">重置</button>
@@ -102,15 +155,8 @@
         var form = layui.form;
         //获取dataRow
         var dataRow = parent.dataRow;
-        
-        form.val("formTest", { //formTest 即 class="layui-form" 所在元素属性 lay-filter="" 对应的值
-                "username": "贤心" // "name": "value"
-                ,"sex": "女"
-                ,"auth": 3
-                ,"check[write]": true
-                ,"open": false
-                ,"desc": "我爱layui"
-        });
+
+        form.val("formTest", dataRow);
         
         //提交
         form.on('submit(formDemo)', function(data){
