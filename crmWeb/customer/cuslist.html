@@ -55,7 +55,26 @@
                             field: 'cusRegion',
                             title: '客户地区',
                             width: 80,
-                            sort: true
+                            templte:function(d){
+                                var res=null;
+                                switch(d.cusRigion){
+                                    case 1: res = "东北"
+                                        break;
+                                    case 2: res = "华北"
+                                        break;
+                                    case 3: res = "西北"
+                                        break;
+                                    case 4: res = "西南"
+                                        break;
+                                    case 5: res = "华南"
+                                        break;
+                                    case 6: res = "华中"
+                                        break;
+                                    case 6: res = "华东"
+                                        break;
+                                }
+                                return res;
+                            }
                         }, {
                             field: 'cusIndustry',
                             title: '客户行业',
