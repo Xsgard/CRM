@@ -33,9 +33,9 @@
 
         // layui.use 方法类似于C语言中的main，方法的入口
         //在use方法的第一个参数中设置要使用的内置模块，比如这里的table
-        layui.use('table', function () {
-            var table = layui.table; //获取table对象
-
+        layui.use(['form', 'jquery'], function () {
+            var form = layui.form;
+            var $ = layui.jquery;
             //第一个实例
             table.render({
                 elem: '#demo', //绑定表格元素，值是table的id
@@ -309,12 +309,12 @@
                             url: "http://localhost:8080/customer/deleteByIds", //数据接口，向后端提交请求的地址
                             type: "post", //请求方式
                             data: {
-                                cusIds:cusIds
+                                cusIds: cusIds
                             }, //传递给后的值
                             dataType: "json",
                             success: function (res) { //请求成功后的回调函数，res就是后端传回来的数据
                                 layer.msg(res.msg);
-                                parent.layui.table.reloadData('demo',{})
+                                table.reloadData('demo', {})
                             }
 
                         })
