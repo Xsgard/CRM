@@ -40,7 +40,7 @@
             table.render({
                 elem: '#demo', //绑定表格元素，值是table的id
                 height: 312, //表格的高度
-                url: 'http://localhost:8080/customer/getCustomers', //数据接口, layui的table自动会带上page和limit参数，不需要自己添加    
+                url: 'http://localhost:8080/services/page', //数据接口, layui的table自动会带上page和limit参数，不需要自己添加    
                 toolbar: '#toolbarDemo',
                 page: true, //开启分页
                 limit: 2,
@@ -104,7 +104,7 @@
                             width: 135,
                             templet: function (d) { //d里存放有当前行的数据-customer对象
                                 var res = null;
-                                switch (d.serverState) {
+                                switch (d.serStatus) {
                                     case 1:
                                         res = "新创建"
                                         break;
@@ -157,7 +157,7 @@
                             sort: true,
                             templet: function (d) { //d里存放有当前行的数据-customer对象
                                 var res = null;
-                                switch (d.cusSatisfy) {
+                                switch (d.serSatisfy) {
                                     case 1:
                                         res = "一级";
                                         break;
