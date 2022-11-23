@@ -163,8 +163,8 @@
                 //怎么和后端进行数据交换？
                 //ajax异步提交
                 $.ajax({
-                    url: "http://localhost:8080/customer", //数据接口，向后端提交请求的地址
-                    type: "delete", //请求方式
+                    url: "http://localhost:8080/customer/add", //数据接口，向后端提交请求的地址
+                    type: "post", //请求方式
                     data: data.field, //传递给后的值
                     dataType: "json",
                     success: function (res) { //请求成功后的回调函数，res就是后端传回来的数据
