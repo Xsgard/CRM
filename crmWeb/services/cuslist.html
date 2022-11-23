@@ -51,13 +51,17 @@
                         {
                             type: 'checkbox',
                             fixed: 'left'
+                        },{
+                            field: 'serId',
+                            title: 'ID',
+                            width: 80
                         }, {
-                            field: 'serverType',
-                            title: '',
+                            field: 'serType',
+                            title: '服务类型',
                             width: 80,
                             templet: function (d) { //d里存放有当前行的数据-customer对象
                                 var res = null;
-                                switch (d.serverType) {
+                                switch (d.serType) {
                                     case 1:
                                         res = "咨询"
                                         break;
@@ -71,32 +75,32 @@
                                 return res;
                             }
                         }, {
-                            field: 'serverOutline',
+                            field: 'serDescription',
                             title: '概要',
                             width: 80
                         }, {
-                            field: 'ServerRequirements',
+                            field: 'serDetail',
                             title: '详细要求',
                             width: 80
                         }, {
-                            field: 'serverId',
+                            field: ' cusId',
                             title: '客户编号',
                             width: 80,
                             sort: true,
                             fixed: 'left'
                         }, {
-                            field: 'serverUser',
+                            field: '  serCreater  ',
                             title: '创建人',
                             width: 80,
                             fixed: 'left'
                         }, {
-                            field: 'serverTime1',
+                            field: ' serCreatetime',
                             title: '创建时间',
                             width: 80,
                             fixed: 'left'
                         },{
-                            field: 'serverState',
-                            title: '',
+                            field: 'serStatus',
+                            title: '服务状态',
                             width: 80,
                             templet: function (d) { //d里存放有当前行的数据-customer对象
                                 var res = null;
@@ -117,37 +121,37 @@
                                 return res;
                             }
                         }, {
-                            field: 'serverTime2',
+                            field: 'serGivetime',
                             title: '分配时间',
                             width: 80,
                             fixed: 'left'
                         },
                          {
-                            field: 'serverDispose',
+                            field: 'serHandle',
                             title: '处理方法',
                             width: 80,
                             fixed: 'left'
                         },
                          {
-                            field: 'serverMan',
+                            field: 'serHandleperson ',
                             title: '处理人',
                             width: 80,
                             fixed: 'left'
                         },
                         {
-                            field: 'serverTime3',
+                            field: 'serHandletime',
                             title: '处理时间',
                             width: 80,
                             fixed: 'left'
                         },
                         {
-                            field: 'serverFeedback',
+                            field: 'serNote',
                             title: '客户反馈',
                             width: 80,
                             fixed: 'left'
                         },
                        {
-                            field: 'serverSatisfy',
+                            field: 'serSatisfy',
                             title: '客户满意度',
                             width: 80,
                             sort: true,
@@ -174,7 +178,7 @@
 
                             }
                         }, {
-                            field: 'serverTime4',
+                            field: 'serTime',
                             title: '反馈时间',
                             width: 80,
                             fixed: 'left'
