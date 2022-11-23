@@ -51,99 +51,103 @@
                         {
                             type: 'checkbox',
                             fixed: 'left'
-                        },
-                        , {
-                            field: 'cusRegion',
+                        }, {
+                            field: 'serverType',
                             title: '',
                             width: 80,
                             templet: function (d) { //d里存放有当前行的数据-customer对象
                                 var res = null;
-                                switch (d.cusRegion) {
-                                    //1-东北，2-华北，3-西北，4-西南，5-华南，6-华中，7-华东
+                                switch (d.serverType) {
                                     case 1:
-                                        res = "东北";
+                                        res = "咨询"
                                         break;
                                     case 2:
-                                        res = "华北";
+                                        res = "投诉";
                                         break;
                                     case 3:
-                                        res = "西北";
-                                        break;
-                                    case 4:
-                                        res = "西南";
-                                        break;
-                                    case 5:
-                                        res = "华南";
-                                        break;
-                                    case 6:
-                                        res = "华中";
-                                        break;
-                                    case 7:
-                                        res = "华中";
+                                        res = "建议";
                                         break;
                                 }
                                 return res;
-
                             }
                         }, {
-                            field: 'cusIndustry',
-                            title: '客户行业',
+                            field: 'serverOutline',
+                            title: '概要',
+                            width: 80
+                        }, {
+                            field: 'ServerRequirements',
+                            title: '详细要求',
+                            width: 80
+                        }, {
+                            field: 'serverId',
+                            title: '客户编号',
+                            width: 80,
+                            sort: true,
+                            fixed: 'left'
+                        }, {
+                            field: 'serverUser',
+                            title: '创建人',
+                            width: 80,
+                            fixed: 'left'
+                        }, {
+                            field: 'serverTime1',
+                            title: '创建时间',
+                            width: 80,
+                            fixed: 'left'
+                        },{
+                            field: 'serverState',
+                            title: '',
                             width: 80,
                             templet: function (d) { //d里存放有当前行的数据-customer对象
                                 var res = null;
-                                switch (d.cusIndustry) {
-                                    //1-东北，2-华北，3-西北，4-西南，5-华南，6-华中，7-华东
+                                switch (d.serverState) {
                                     case 1:
-                                        res = "金融";
+                                        res = "新创建"
                                         break;
                                     case 2:
-                                        res = "房地产";
+                                        res = "已分配";
                                         break;
                                     case 3:
-                                        res = "商业服务";
+                                        res = "已处理";
                                         break;
                                     case 4:
-                                        res = "运输物流";
-                                        break;
-                                    case 5:
-                                        res = "生产";
-                                        break;
-                                    case 6:
-                                        res = "政府";
-                                        break;
-                                    case 7:
-                                        res = "文化传媒";
-                                        break;
-                                    case 8:
-                                        res = "其他";
+                                        res = "已归档";
                                         break;
                                 }
                                 return res;
-
                             }
                         }, {
-                            field: 'cusLevel',
-                            title: '客户等级',
-                            width: 177,
-                            templet: function (d) { //d里存放有当前行的数据-customer对象
-                                var res = null;
-                                switch (d.cusLevel) {
-                                    //1-东北，2-华北，3-西北，4-西南，5-华南，6-华中，7-华东
-                                    case 'A':
-                                        res = "重点客户";
-                                        break;
-                                    case 'B':
-                                        res = "普通客户";
-                                        break;
-                                    case 'C':
-                                        res = "非优先客户";
-                                        break;
-                                }
-                                return res;
-
-                            }
-                        }, {
-                            field: 'cusSatisfy',
+                            field: 'serverTime2',
+                            title: '分配时间',
+                            width: 80,
+                            fixed: 'left'
+                        },
+                         {
+                            field: 'serverDispose',
+                            title: '处理方法',
+                            width: 80,
+                            fixed: 'left'
+                        },
+                         {
+                            field: 'serverMan',
+                            title: '处理人',
+                            width: 80,
+                            fixed: 'left'
+                        },
+                        {
+                            field: 'serverTime3',
+                            title: '处理时间',
+                            width: 80,
+                            fixed: 'left'
+                        },
+                        {
+                            field: 'serverFeedback',
+                            title: '客户反馈',
+                            width: 80,
+                            fixed: 'left'
+                        },
+                       {
+                            field: 'serverSatisfy',
                             title: '客户满意度',
                             width: 80,
                             sort: true,
@@ -170,67 +174,11 @@
 
                             }
                         }, {
-                            field: 'cusCredit',
-                            title: '客户信用度',
+                            field: 'serverTime4',
+                            title: '反馈时间',
                             width: 80,
-                            templet: function (d) { //d里存放有当前行的数据-customer对象
-                                var res = null;
-                                switch (d.cusCredit) {
-                                    case 1:
-                                        res = "一级";
-                                        break;
-                                    case 2:
-                                        res = "二级";
-                                        break;
-                                    case 3:
-                                        res = "三级";
-                                        break;
-                                    case 4:
-                                        res = "四级";
-                                        break;
-                                    case 5:
-                                        res = "五级";
-                                        break;
-                                }
-                                return res;
-
-                            }
-                        }, {
-                            field: 'cusAddr',
-                            title: '客户地址',
-                            width: 80
-                        }, {
-                            field: 'userId',
-                            title: '客户经理',
-                            width: 135
-
-                        }, {
-                            field: 'cusStatus',
-                            title: '客户状态',
-                            width: 135,
-                            templet: function (d) { //d里存放有当前行的数据-customer对象
-                                var res = null;
-                                switch (d.cusStatus) {
-                                    case 1:
-                                        res = "正常";
-                                        break;
-                                    case 0:
-                                        res = "流失";
-                                        break;
-                                }
-                                return res;
-
-                            }
-                        }, {
-                            field: 'cusCreatetime',
-                            title: '创建时间',
-                            width: 135,
-                            sort: true
-                        }, {
-                            title: '操作',
-                            width: 135,
-                            toolbar: '#barDemo'
-                        }
+                            fixed: 'left'
+                        },
                     ]
                 ]
             }); //table.render方法结束
