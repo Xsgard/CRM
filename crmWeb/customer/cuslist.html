@@ -14,6 +14,14 @@
         <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
         <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
     </script>
+    <!-- 工具栏模板：-->
+    <script type="text/html" id="toolbarDemo">
+        <div class="layui-btn-container">
+          <button class="layui-btn layui-btn-sm" lay-event="add">添加</button>
+          <button class="layui-btn layui-btn-sm" lay-event="delete">删除</button>
+          <button class="layui-btn layui-btn-sm" lay-event="update">编辑</button>
+        </div>
+    </script>
 
     <!-- table 表格原始容器，设置一个id用来给js中的table绑定，lay-filter是事件过滤器 -->
     <table id="demo" lay-filter="test"></table>
@@ -25,23 +33,25 @@
 
         // layui.use 方法类似于C语言中的main，方法的入口
         //在use方法的第一个参数中设置要使用的内置模块，比如这里的table
-        layui.use('table', function() {
+        layui.use('table', function () {
             var table = layui.table; //获取table对象
 
             //第一个实例
             table.render({
                 elem: '#demo', //绑定表格元素，值是table的id
                 height: 312, //表格的高度
-                url: 'http://localhost:8080/customer/getCustomers' //数据接口, layui的table自动会带上page和limit参数，不需要自己添加
-                    ,
-                page: true //开启分页
-                    ,
+                url: 'http://localhost:8080/customer/getCustomers', //数据接口, layui的table自动会带上page和limit参数，不需要自己添加    
+                toolbar: '#toolbarDemo',
+                page: true, //开启分页
                 limit: 2,
                 limits: [1, 2, 6, 8],
                 cols: [
                     [ //表头，一个{}对应表格的一列
                         //title对应表格的表头，field 对应json对象数据中的key(键)
                         {
+                            type: 'checkbox',
+                            fixed: 'left'
+                        }, {
                             field: 'cusId',
                             title: '客户编号',
                             width: 80,
@@ -55,44 +65,145 @@
                             field: 'cusRegion',
                             title: '客户地区',
                             width: 80,
-                            templte:function(d){
-                                var res=null;
-                                switch(d.cusRigion){
-                                    case 1: res = "东北"
+                            templet: function (d) { //d里存放有当前行的数据-customer对象
+                                var res = null;
+                                switch (d.cusRegion) {
+                                    //1-东北，2-华北，3-西北，4-西南，5-华南，6-华中，7-华东
+                                    case 1:
+                                        res = "东北";
                                         break;
-                                    case 2: res = "华北"
+                                    case 2:
+                                        res = "华北";
                                         break;
-                                    case 3: res = "西北"
+                                    case 3:
+                                        res = "西北";
                                         break;
-                                    case 4: res = "西南"
+                                    case 4:
+                                        res = "西南";
                                         break;
-                                    case 5: res = "华南"
+                                    case 5:
+                                        res = "华南";
                                         break;
-                                    case 6: res = "华中"
+                                    case 6:
+                                        res = "华中";
                                         break;
-                                    case 6: res = "华东"
+                                    case 7:
+                                        res = "华中";
                                         break;
                                 }
                                 return res;
+
                             }
                         }, {
                             field: 'cusIndustry',
                             title: '客户行业',
-                            width: 80
+                            width: 80,
+                            templet: function (d) { //d里存放有当前行的数据-customer对象
+                                var res = null;
+                                switch (d.cusIndustry) {
+                                    //1-东北，2-华北，3-西北，4-西南，5-华南，6-华中，7-华东
+                                    case 1:
+                                        res = "金融";
+                                        break;
+                                    case 2:
+                                        res = "房地产";
+                                        break;
+                                    case 3:
+                                        res = "商业服务";
+                                        break;
+                                    case 4:
+                                        res = "运输物流";
+                                        break;
+                                    case 5:
+                                        res = "生产";
+                                        break;
+                                    case 6:
+                                        res = "政府";
+                                        break;
+                                    case 7:
+                                        res = "文化传媒";
+                                        break;
+                                    case 8:
+                                        res = "其他";
+                                        break;
+                                }
+                                return res;
+
+                            }
                         }, {
                             field: 'cusLevel',
                             title: '客户等级',
-                            width: 177
+                            width: 177,
+                            templet: function (d) { //d里存放有当前行的数据-customer对象
+                                var res = null;
+                                switch (d.cusLevel) {
+                                    //1-东北，2-华北，3-西北，4-西南，5-华南，6-华中，7-华东
+                                    case 'A':
+                                        res = "重点客户";
+                                        break;
+                                    case 'B':
+                                        res = "普通客户";
+                                        break;
+                                    case 'C':
+                                        res = "非优先客户";
+                                        break;
+                                }
+                                return res;
+
+                            }
                         }, {
                             field: 'cusSatisfy',
                             title: '客户满意度',
                             width: 80,
-                            sort: true
+                            sort: true,
+                            templet: function (d) { //d里存放有当前行的数据-customer对象
+                                var res = null;
+                                switch (d.cusSatisfy) {
+                                    case 1:
+                                        res = "一级";
+                                        break;
+                                    case 2:
+                                        res = "二级";
+                                        break;
+                                    case 3:
+                                        res = "三级";
+                                        break;
+                                    case 4:
+                                        res = "四级";
+                                        break;
+                                    case 5:
+                                        res = "五级";
+                                        break;
+                                }
+                                return res;
+
+                            }
                         }, {
                             field: 'cusCredit',
                             title: '客户信用度',
                             width: 80,
-                            sort: true
+                            templet: function (d) { //d里存放有当前行的数据-customer对象
+                                var res = null;
+                                switch (d.cusCredit) {
+                                    case 1:
+                                        res = "一级";
+                                        break;
+                                    case 2:
+                                        res = "二级";
+                                        break;
+                                    case 3:
+                                        res = "三级";
+                                        break;
+                                    case 4:
+                                        res = "四级";
+                                        break;
+                                    case 5:
+                                        res = "五级";
+                                        break;
+                                }
+                                return res;
+
+                            }
                         }, {
                             field: 'cusAddr',
                             title: '客户地址',
@@ -100,33 +211,41 @@
                         }, {
                             field: 'cusZipcode',
                             title: '客户邮编',
-                            width: 135,
-                            sort: true
+                            width: 135
                         }, {
                             field: 'cusPhone',
                             title: '客户电话',
-                            width: 135,
-                            sort: true
+                            width: 135
                         }, {
                             field: 'cusFax',
                             title: '客户传真',
-                            width: 135,
-                            sort: true
+                            width: 135
                         }, {
                             field: 'cusUrl',
                             title: '客户网址',
-                            width: 135,
-                            sort: true
+                            width: 135
                         }, {
                             field: 'userId',
                             title: '客户经理',
-                            width: 135,
-                            sort: true
+                            width: 135
+
                         }, {
                             field: 'cusStatus',
                             title: '客户状态',
                             width: 135,
-                            sort: true
+                            templet: function (d) { //d里存放有当前行的数据-customer对象
+                                var res = null;
+                                switch (d.cusStatus) {
+                                    case 1:
+                                        res = "正常";
+                                        break;
+                                    case 0:
+                                        res = "流失";
+                                        break;
+                                }
+                                return res;
+
+                            }
                         }, {
                             field: 'cusCreatetime',
                             title: '创建时间',
@@ -145,17 +264,12 @@
             //第一个参数：tool表示对单元格工具栏添加事件，test对应table标签的lay-filter属性值（确定对哪一个表格添加事件）
             //第二个参数：是一个函数，触发这个单元格事件时，执行的代码就写在这个函数里
             //obj到底是什么？
-            table.on('tool(test)', function(obj) { // 双击 toolDouble
+            table.on('tool(test)', function (obj) { // 双击 toolDouble
                 var data = obj.data; //data是触发单元格事件的那一行的数据
                 console.log("下面是cuslist页面的单元格工具事件的obj：")
                 console.log(obj)
-                    //obj.event是指单元格事件，当这个值等于单元格工具按钮的lay-event的属性值的时候，就满足if条件，从而执行if语句里的代码
-                if (obj.event === 'del') { //删除按钮事件
-                    layer.confirm('真的删除行么', function(index) {
-                        obj.del();
-                        layer.close(index);
-                    });
-                } else if (obj.event === 'edit') { //修改按钮事件
+                //obj.event是指单元格事件，当这个值等于单元格工具按钮的lay-event的属性值的时候，就满足if条件，从而执行if语句里的代码
+                if (obj.event === 'edit') { //修改按钮事件
                     dataRow = data; //2.给全局变量赋值
 
                     //layer.open设置一个弹出框
@@ -167,6 +281,51 @@
                     });
                 }
             });
+
+
+            table.on('toolbar(test)', function (obj) {
+                var checkStatus = table.checkStatus(obj.config.id);
+                switch (obj.event) {
+                    case 'add':
+                        layer.open({
+                            title: '编辑', //弹出框的标题
+                            type: 2, //弹出框的类型：1 html代码页面  2 iframe
+                            area: ['80%', '80%'],
+                            content: 'cunadd.html' //修改页面的相对地址
+                        });
+                        break;
+                    case 'delete':
+                        if (checkStatus.data.length > 0) {
+                            var idArray = [];
+                            for (var i = 0; i < checkStatus.data.length; i++) {
+                                idArray[i] = checkStatus.data[i].cusId;
+                            }
+                        } else {
+                            layer.msg("请至少选中一条信息！");
+                        }
+                        var cusIds = idArray.toString;
+
+                        $.ajax({
+                            url: "http://localhost:8080/customer/deleteByIds", //数据接口，向后端提交请求的地址
+                            type: "post", //请求方式
+                            data: {
+                                cusIds:cusIds
+                            }, //传递给后的值
+                            dataType: "json",
+                            success: function (res) { //请求成功后的回调函数，res就是后端传回来的数据
+                                layer.msg(res.msg);
+                                parent.layui.table.reloadData('demo',{})
+                            }
+
+                        })
+
+                        break;
+                    case 'update':
+                        layer.msg('编辑');
+                        break;
+                };
+            });
+
 
         }); //layui.use结束符
     </script>
