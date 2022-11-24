@@ -105,7 +105,7 @@
 
             //表单提交
             form.on('submit(formDemo)', function (data) {
-                data.field.userId = 1;
+                
 
                 // layer.msg(JSON.stringify(data.field));
                 //data.field是获取的表单元素的值
@@ -120,9 +120,9 @@
                         // console.log(res.msg)
                         //设置父页面刷新, reloadData的第一个参数是要刷新的表格的ID
                         layer.msg(res.msg, { time: 1000 }, function () {
-                            var index = parent.layer.getFrameIndex(window.name);
-                            parent.layui.table.reloadData('demo', {});
-                            parent.layer.close(index);
+                            var index = layer.getFrameIndex(window.name);
+                            layui.table.reloadData('demo', {});
+                            layer.close(index);
                         })
                     }
 
