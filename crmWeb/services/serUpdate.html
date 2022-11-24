@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>创建人页面</title>
+    <link rel="stylesheet" href="../layui/css/layui.css">
+    <script src="../layui/layui.js"></script>
+    <style>
+        form {
+            padding: 20px 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 
+        客户编号-设为只读 输入框
+        客户名称、地址、邮编、电话、传真、网址-输入框
+        客户地区、客户行业、等级、满意度、信用度、客户状态-选择框
+        客户经理-通过js代码自动赋值
+        创建时间-有默认当前时间
+     -->
+    <form class="layui-form" action="" lay-filter="formTest">
+       
+
+      <div class="layui-input-inline">
+         <select id="service" name="service" lay-verify="required"  class="select">
+                <option value="0" >创建人</option>
+         </select>
+       </div>
+
+    </form>
+
+    <script>
+        //Demo
+        layui.use('form',function(){
+  var $ = layui.jquery
+  var form = layui.form
+	    $.ajax({
+	        url: '/service/select',
+	        dataType: 'json',
+	        type: 'post',
+	        success: function(data) {
+	            if (data!== null) {
+	            	$("#service").empty();
+                	$("#service").append(new Option("创建人", "0"));
+	                $.each(data, function(index, item) {                   
+	                    $('#service').append(new Option(item));
+	                });
+	            } else {
+	                $("#service").append(new Option("暂无数据", ""));
+	            }
+	            //重新渲染
+	            form.render("select");
+	        }
+	    });
+});
+
+    </script>
+
+</body>
+
+</html>
