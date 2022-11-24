@@ -26,12 +26,75 @@
     <form class="layui-form" action="" lay-filter="formTest">
        
 
-      <div class="layui-input-inline">
-         <select id="service" name="service" lay-verify="required"  class="select">
-                <option value="0" >创建人</option>
-         </select>
-       </div>
+       <div class="layui-form-item">
+        <label class="layui-form-label">服务类型</label>
+        <div class="layui-input-block">
+            <select name="serType" lay-verify="required">
+          <option value=""></option>
+          <option value="1">咨询</option>
+          <option value="2">投诉</option>
+          <option value="3">建议</option>
+        </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">详细要求</label>
+        <div class="layui-input-block">
+            <input type="text" name="serDetail" readonly class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">创建人</label>
+        <div class="layui-input-block">
+            <input type="text" name="serCreater" readonly class="layui-input">
+        </div>
+    </div>
 
+    <div class="layui-form-item">
+        <label class="layui-form-label">服务状态</label>
+        <div class="layui-input-block">
+            <select name="serStatus" lay-verify="required">
+          <option value=""></option>
+          <option value="1">新创建</option>
+          <option value="2">已分配</option>
+          <option value="3">已处理</option>
+          <option value="4">已归档</option>
+        </select>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">处理方法</label>
+        <div class="layui-input-block">
+            <input type="text" name="serHandle" readonly class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">处理人</label>
+        <div class="layui-input-block">
+            <input type="text" name="serHandleperson" readonly class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">客户反馈</label>
+        <div class="layui-input-block">
+            <input type="text" name="serNote" readonly class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">客户满意度</label>
+        <div class="layui-input-block">
+            <select name="serSatisfy" lay-verify="required">
+          <option value=""></option>
+          <option value="1">一级满意</option>
+          <option value="2">二级满意</option>
+          <option value="3">三级满意</option>
+          <option value="4">四级满意</option>
+          <option value="4">五级满意</option>
+        </select>
+        </div>
+    </div>
     </form>
 
     <script>
