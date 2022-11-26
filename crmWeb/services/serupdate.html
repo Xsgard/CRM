@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>分配人修改页面</title>
+    <title>创建人页面</title>
     <link rel="stylesheet" href="../layui/css/layui.css">
     <script src="../layui/layui.js"></script>
     <style>
@@ -23,28 +23,106 @@
         创建时间-有默认当前时间
      -->
     <form class="layui-form" action="" lay-filter="formTest">
-
         <div class="layui-form-item">
-            <label class="layui-form-label">客户地区</label>
+            <label class="layui-form-label">serId</label>
             <div class="layui-input-block">
-                <select name="serHandleperson" lay-verify="required">
-              <option value=""></option>
-              <option value="1">客户经理1</option>
-              <option value="2">客户经理2</option>
-              <option value="3">客户经理3</option>
-              <option value="4">客户经理4</option>
-              <option value="5">客户经理5</option>
-              <option value="6">客户经理6</option>
-              <option value="7">客户经理7</option>
-            </select>
+                <input type="text" name="serId" readonly class="layui-input" hidden>
             </div>
         </div>
-        
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">cusId</label>
+            <div class="layui-input-block">
+                <input type="text" name="cusId" readonly class="layui-input" hidden>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">服务类型</label>
+            <div class="layui-input-block">
+                <select name="serType" lay-verify="required">
+                    <option value=""></option>
+                    <option value="1">咨询</option>
+                    <option value="2">投诉</option>
+                    <option value="3">建议</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">详细要求</label>
+            <div class="layui-input-block">
+                <input type="text" name="serDetail" readonly class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">创建人</label>
+            <div class="layui-input-block">
+                <input type="text" name="serCreater" readonly class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">服务状态</label>
+            <div class="layui-input-block">
+                <select name="serStatus" lay-verify="required">
+                    <option value=""></option>
+                    <option value="1">新创建</option>
+                    <option value="2">已分配</option>
+                    <option value="3">已处理</option>
+                    <option value="4">已归档</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">处理方法</label>
+            <div class="layui-input-block">
+                <input type="text" name="serHandle" readonly class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">处理人</label>
+            <div class="layui-input-block">
+                <select name="serHandleperson" id="service" class="select" lay-verify="required">
+                    <option value=""></option>
+                </select>
+            </div>
+        </div>
+
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">客户反馈</label>
+            <div class="layui-input-block">
+                <input type="text" name="serNote" readonly class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">客户满意度</label>
+            <div class="layui-input-block">
+                <select name="serSatisfy" lay-verify="required">
+                    <option value=""></option>
+                    <option value="1">一级满意</option>
+                    <option value="2">二级满意</option>
+                    <option value="3">三级满意</option>
+                    <option value="4">四级满意</option>
+                    <option value="4">五级满意</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
     </form>
 
     <script>
+
         //Demo
-        layui.use(['form', 'jquery'], function() {
+        layui.use(['form', 'jquery'], function () {
             var form = layui.form;
             var $ = layui.jquery;
 
@@ -52,39 +130,60 @@
             var dataRow = parent.dataRow;
             console.log("下面是dataRow")
             console.log(dataRow)
-                //4.修改表单元素的name属性值=customer实体类的属性名
-                //5.给表单赋值
-                //formTest 即 class="layui-form" 所在元素属性 lay-filter="" 对应的值
-                // "name": "value"
+            //4.修改表单元素的name属性值=customer实体类的属性名
+            //5.给表单赋值
+            //formTest 即 class="layui-form" 所在元素属性 lay-filter="" 对应的值
+            // "name": "value"
             form.val("formTest", dataRow);
 
             //表单提交
-            form.on('submit(formDemo)', function(data) {
+            form.on('submit(formDemo)', function (data) {
                 // layer.msg(JSON.stringify(data.field));
                 //data.field是获取的表单元素的值
 
                 //怎么和后端进行数据交换？
                 //ajax异步提交
                 $.ajax({
-                    url: "http://localhost:8080/service/update", //数据接口，向后端提交请求的地址
+                    url: "http://localhost:8080/services/update", //数据接口，向后端提交请求的地址
                     type: "post", //请求方式
                     data: data.field, //传递给后的值
                     dataType: "json",
-                    success: function(res) { //请求成功后的回调函数，res就是后端传回来的数据
+                    success: function (res) { //请求成功后的回调函数，res就是后端传回来的数据
                         // console.log(res.msg)
                         //设置父页面刷新, reloadData的第一个参数是要刷新的表格的ID
-                        layer.msg(res.msg,{icon:1,time:1000},function (){
+                        layer.msg(res.msg, { icon: 1, time: 1000 }, function () {
                             var index = parent.layer.getFrameIndex(window.name);
                             parent.layui.table.reloadData('demo', {});
                             parent.layer.close(index);
-                        })  
+                        })
                     }
 
                 })
 
                 return false;
             });
+
+
+            $.ajax({
+                url: 'http://localhost:8080/user/getIdAndName',
+                dataType: 'json',
+                type: 'get',
+                success: function (data) {
+                    if (data !== null) {
+                        $("#service").empty();
+                        $("#service").append(new Option("处理人", "0"));
+                        $.each(data, function (index, item) {
+                            $('#service').append(new Option(item.uname));
+                        });
+                    } else {
+                        $("#service").append(new Option("暂无数据", ""));
+                    }
+                    //重新渲染
+                    form.render("select");
+                }
+            });
         });
+
     </script>
 
 </body>
