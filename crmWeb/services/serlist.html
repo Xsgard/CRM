@@ -40,7 +40,7 @@
             table.render({
                 elem: '#demo', //绑定表格元素，值是table的id
                 height: 312, //表格的高度
-                url: 'http://localhost:8080/customer/getCustomers', //数据接口, layui的table自动会带上page和limit参数，不需要自己添加    
+                url: 'http://localhost:8080/services/page', //数据接口, layui的table自动会带上page和limit参数，不需要自己添加    
                 toolbar: '#toolbarDemo',
                 page: true, //开启分页
                 limit: 2,
@@ -87,24 +87,24 @@
                             title: '客户编号',
                             width: 80,
                             sort: true,
-                            fixed: 'left'
+                          
                         }, {
                             field: '  serCreater  ',
                             title: '创建人',
                             width: 80,
-                            fixed: 'left'
+                           
                         }, {
                             field: ' serCreatetime',
                             title: '创建时间',
                             width: 80,
-                            fixed: 'left'
+                           
                         },{
                             field: 'serStatus',
                             title: '服务状态',
-                            width: 80,
+                            width: 135,
                             templet: function (d) { //d里存放有当前行的数据-customer对象
                                 var res = null;
-                                switch (d.serverState) {
+                                switch (d.serStatus) {
                                     case 1:
                                         res = "新创建"
                                         break;
@@ -124,31 +124,31 @@
                             field: 'serGivetime',
                             title: '分配时间',
                             width: 80,
-                            fixed: 'left'
+                           
                         },
                          {
                             field: 'serHandle',
                             title: '处理方法',
                             width: 80,
-                            fixed: 'left'
+                           
                         },
                          {
                             field: 'serHandleperson ',
                             title: '处理人',
                             width: 80,
-                            fixed: 'left'
+                         
                         },
                         {
                             field: 'serHandletime',
                             title: '处理时间',
                             width: 80,
-                            fixed: 'left'
+                           
                         },
                         {
                             field: 'serNote',
                             title: '客户反馈',
                             width: 80,
-                            fixed: 'left'
+                           
                         },
                        {
                             field: 'serSatisfy',
@@ -157,7 +157,7 @@
                             sort: true,
                             templet: function (d) { //d里存放有当前行的数据-customer对象
                                 var res = null;
-                                switch (d.cusSatisfy) {
+                                switch (d.serSatisfy) {
                                     case 1:
                                         res = "一级";
                                         break;
@@ -181,8 +181,11 @@
                             field: 'serTime',
                             title: '反馈时间',
                             width: 80,
-                            fixed: 'left'
-                        },
+                        }, {
+                            title: '操作',
+                            width: 135,
+                            toolbar: '#barDemo'
+                        }
                     ]
                 ]
             }); //table.render方法结束
@@ -201,10 +204,10 @@
 
                     //layer.open设置一个弹出框
                     layer.open({
-                        title: '编辑', //弹出框的标题
+                        title: '处理人', //弹出框的标题
                         type: 2, //弹出框的类型：1 html代码页面  2 iframe
                         area: ['80%', '80%'],
-                        content: 'cusupdate.html' //修改页面的相对地址
+                        content: 'serUpdate.html' //修改页面的相对地址
                     });
                 }
             });

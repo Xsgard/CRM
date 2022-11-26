@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>ECharts</title>
+    <!-- 引入刚刚下载的 ECharts 文件 -->
+    <script src="../js/echarts.js"></script>
+    <script src="../layui/layui.js"></script>
+</head>
+
+<body>
+    <!-- 为 ECharts 准备一个定义了宽高的 DOM -->
+    <div id="main" style="width: 600px;height:400px;"></div>
+    <script type="text/javascript">
+        layui.use(['jquery'], function () {
+            var $ = layui.jquery
+            $.ajax({
+                url: "http://localhost:8080/report/getCusNumByCusRegion", //数据接口，向后端提交请求的地址
+                type: "get", //请求方式
+                data: {}, //传递给后的值
+                dataType: "json",
+                success: function (res) { //请求成功后的回调函数，res就是后端传回来的数据
+                    geteCharts(res.xData, res.yData);
+                }
+
+            });
+            function geteCharts(xData, yData) {
+                // 基于准备好的dom，初始化echarts实例
+                var myChart = echarts.init(document.getElementById('main'));
+
+                // 指定图表的配置项和数据
+                var option = {
+                    title: {
+                        text: '按客户地区统计客户'
+                    },
+                    tooltip: {},
+                    legend: {
+                        data: ['客户地区']
+                    },
+                    xAxis: {
+                        data: xData
+                    },
+                    yAxis: {},
+                    series: [
+                        {
+                            name: '客户地区',
+                            type: 'bar',
+                            data: yData
+                        }
+                    ]
+                };
+
+                // 使用刚指定的配置项和数据显示图表。
+                myChart.setOption(option);
+            }
+
+        })
+
+        // var xData = ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子'];
+        // var yData = [5, 20, 36, 10, 10, 20];
+
+
+        // this.geteCharts(xData,yData);
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

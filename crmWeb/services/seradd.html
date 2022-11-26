@@ -64,17 +64,14 @@
         <div class="layui-form-item">
             <label class="layui-form-label">处理方法</label>
             <div class="layui-input-block">
-                <input type="text" name="serHandle" required lay-verify="required" placeholder="请输入处理方法"
-                    autocomplete="off" class="layui-input">
+                <select name="serHandle" lay-verify="required">
+                    <option value=""></option>
+                    <option value="1">线上处理</option>
+                    <option value="2">线下处理</option>
+                </select>
             </div>
         </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">处理人</label>
-            <div class="layui-input-block">
-                <input type="text" name="serHandleperson" required lay-verify="required" placeholder="请输入处理人姓名"
-                    autocomplete="off" class="layui-input">
-            </div>
-        </div>
+        
 
         <div class="layui-form-item">
             <label class="layui-form-label">客户反馈</label>
@@ -84,21 +81,9 @@
             </div>
         </div>
 
-        <div class="layui-form-item">
-            <label class="layui-form-label">客户满意度</label>
-            <div class="layui-input-block">
-                <select name="serSatisfy" lay-verify="required">
-                    <option value=""></option>
-                    <option value="1">一级</option>
-                    <option value="2">二级</option>
-                    <option value="3">三级</option>
-                    <option value="4">四级</option>
-                    <option value="5">五级</option>
-                </select>
-            </div>
-        </div>
+        
 
-
+       
         </div>
 
 
@@ -120,14 +105,14 @@
 
             //表单提交
             form.on('submit(formDemo)', function (data) {
-                data.field.userId = 1;
+                
 
                 // layer.msg(JSON.stringify(data.field));
                 //data.field是获取的表单元素的值
                 //怎么和后端进行数据交换？
                 //ajax异步提交
                 $.ajax({
-                    url: "http://localhost:8080/customer/add", //数据接口，向后端提交请求的地址
+                    url: "http://localhost:8080/services/add", //数据接口，向后端提交请求的地址
                     type: "post", //请求方式
                     data: data.field, //传递给后的值
                     dataType: "json",
@@ -135,9 +120,9 @@
                         // console.log(res.msg)
                         //设置父页面刷新, reloadData的第一个参数是要刷新的表格的ID
                         layer.msg(res.msg, { time: 1000 }, function () {
-                            var index = parent.layer.getFrameIndex(window.name);
-                            parent.layui.table.reloadData('demo', {});
-                            parent.layer.close(index);
+                            var index = layer.getFrameIndex(window.name);
+                            layui.table.reloadData('demo', {});
+                            layer.close(index);
                         })
                     }
 
